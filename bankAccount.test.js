@@ -20,10 +20,12 @@ describe('BankAccount', () => {
     expect(account.getBalance()).toBe(50);
   });
 
-  it('records the transactions with amount', () => {
+  it('records the transactions with amount and date', () => {
     const account = new BankAccount();
-    account.deposit(50);
+    const fakeDate = { format: '25/04/2022' };
 
-    expect(account.transactions).toEqual([50]);
+    account.deposit(50, fakeDate.format);
+
+    expect(account.transactions).toEqual([[50, '25/04/2022']]);
   });
 });

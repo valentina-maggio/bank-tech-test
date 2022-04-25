@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/valentina-maggio/bank-tech-test#readme",
   "dependencies": {
-    "jest": "^27.5.1"
+    "jest": "^27.5.1",
+    "moment": "^2.29.3"
   },
   "jest": {
     "collectCoverage": true
