@@ -19,4 +19,11 @@ describe('BankAccount', () => {
 
     expect(account.getBalance()).toBe(50);
   });
+
+  it('records the transactions with amount', () => {
+    const account = new BankAccount();
+    account.deposit(50);
+
+    expect(account.transactions).toEqual([50]);
+  });
 });
