@@ -15,8 +15,9 @@ class BankAccount {
     this.transactions.push([amount, date]);
   }
 
-  viewStatement() {
-    return this.transactions;
+  withdraw(amount, date = moment().format('DD/MM/YYYY')) {
+    this.balance -= amount;
+    this.transactions.push([amount, date]);
   }
 }
 
