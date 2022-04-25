@@ -16,13 +16,13 @@ class BankAccount {
   deposit(amount, date = moment().format('DD/MM/YYYY')) {
     this.#errorMessage(amount);
     this.balance += amount;
-    this.transactions.push([amount, date]);
+    this.transactions.push([date, amount, this.balance]);
   }
 
   withdraw(amount, date = moment().format('DD/MM/YYYY')) {
     this.#errorMessage(amount);
     this.balance -= amount;
-    this.transactions.push([amount, date]);
+    this.transactions.push([date, amount, this.balance]);
   }
 
   #errorMessage(amount) {

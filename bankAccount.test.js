@@ -31,25 +31,35 @@ describe('BankAccount', () => {
       expect(account.getBalance()).toBe(70);
     });
 
-    it('records the transactions with amount and date', () => {
+    it('records the transactions with date, amount and current balance', () => {
       const account = new BankAccount();
       const fakeDate = { format: '25/04/2022' };
 
       account.deposit(50, fakeDate.format);
 
-      expect(account.transactions).toEqual([[50, '25/04/2022']]);
+      expect(account.transactions).toEqual([['25/04/2022', 50, 50]]);
+    });
+
+    it('records the correct current balance', () => {
+      const account = new BankAccount();
+      const fakeDate = { format: '25/04/2022' };
+
+      account.deposit(50, fakeDate.format);
+      account.withdraw(20, fakeDate.format);
+
+      expect(account.transactions).toEqual([['25/04/2022', 50, 50], ['25/04/2022', 20, 30]]);
     });
   });
 
   describe('Entering invalid inputs', () => {
-    it('returns an error message when customer inputs invalid amount for deposit', () => {
+    it('throws an error when customer inputs invalid amount for deposit', () => {
       const account = new BankAccount();
       expect(() => {
         account.deposit(0);
       }).toThrow('Invalid input, please enter a positive number');
     });
 
-    it('returns an error message when customer inputs invalid type of amount for withdrawal', () => {
+    it('throws an error  when customer inputs invalid type of amount for withdrawal', () => {
       const account = new BankAccount();
       expect(() => {
         account.withdraw('money');
