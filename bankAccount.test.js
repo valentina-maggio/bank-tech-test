@@ -40,4 +40,18 @@ describe('BankAccount', () => {
       expect(account.transactions).toEqual([[50, '25/04/2022']]);
     });
   });
+
+  describe('Entering invalid inputs', () => {
+    it('returns an error message when customer inputs invalid amount for deposit', () => {
+      const account = new BankAccount();
+      account.deposit(0);
+      expect(account.errorMsg).toBe('Invalid input, please enter a positive amount');
+    });
+
+    it('returns an error message when customer inputs invalid amount for withdrawal', () => {
+      const account = new BankAccount();
+      account.withdraw(-10);
+      expect(account.errorMsg).toBe('Invalid input, please enter a positive amount');
+    });
+  });
 });
