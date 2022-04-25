@@ -12,4 +12,11 @@ describe('BankAccount', () => {
 
     expect(account.getBalance()).toBe(0);
   });
+
+  it('adds money to the bank account', () => {
+    const account = new BankAccount();
+    account.deposit(50);
+
+    expect(account.getBalance()).toBe(50);
+  });
 });
