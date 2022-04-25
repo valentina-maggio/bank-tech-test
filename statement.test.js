@@ -6,4 +6,10 @@ describe('Statement', () => {
 
     expect(statement).toBeInstanceOf(Statement);
   });
+
+  it('returns the document header', () => {
+    const statement = new Statement();
+
+    expect(statement.getHeader()).toBe('date || credit || debit || balance');
+  });
 });

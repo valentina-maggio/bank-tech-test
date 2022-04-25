@@ -22,7 +22,8 @@
     "moment": "^2.29.3"
   },
   "jest": {
-    "collectCoverage": true
+    "collectCoverage": true,
+    "verbose": true
   },
   "devDependencies": {
     "eslint": "^8.14.0",
