@@ -6,4 +6,10 @@ describe('BankAccount', () => {
 
     expect(account).toBeInstanceOf(BankAccount);
   });
+
+  it('has an initial balance of 0', () => {
+    const account = new BankAccount();
+
+    expect(account.getBalance()).toBe(0);
+  });
 });
