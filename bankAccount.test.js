@@ -15,7 +15,7 @@ describe('BankAccount', () => {
     });
   });
 
-  describe('Bank account management', () => {
+  describe('Bank account movements', () => {
     it('adds money to the bank account', () => {
       const account = new BankAccount();
       account.deposit(50);
@@ -44,14 +44,16 @@ describe('BankAccount', () => {
   describe('Entering invalid inputs', () => {
     it('returns an error message when customer inputs invalid amount for deposit', () => {
       const account = new BankAccount();
-      account.deposit(0);
-      expect(account.errorMsg).toBe('Invalid input, please enter a positive amount');
+      expect(() => {
+        account.deposit(0);
+      }).toThrow('Invalid input, please enter a positive number');
     });
 
-    it('returns an error message when customer inputs invalid amount for withdrawal', () => {
+    it('returns an error message when customer inputs invalid type of amount for withdrawal', () => {
       const account = new BankAccount();
-      account.withdraw(-10);
-      expect(account.errorMsg).toBe('Invalid input, please enter a positive amount');
+      expect(() => {
+        account.withdraw('money');
+      }).toThrow('Invalid input, please enter a positive number');
     });
   });
 });

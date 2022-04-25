@@ -1,10 +1,12 @@
 const moment = require('moment');
 
 class BankAccount {
+  #errMsg;
+
   constructor() {
     this.balance = 0;
     this.transactions = [];
-    this.errorMsg = '';
+    this.#errMsg = 'Invalid input, please enter a positive number';
   }
 
   getBalance() {
@@ -12,26 +14,21 @@ class BankAccount {
   }
 
   deposit(amount, date = moment().format('DD/MM/YYYY')) {
-    if (amount > 0) {
-      this.balance += amount;
-      this.transactions.push([amount, date]);
-    } else {
-      this.errorMessage();
-    }
+    this.#errorMessage(amount);
+    this.balance += amount;
+    this.transactions.push([amount, date]);
   }
 
   withdraw(amount, date = moment().format('DD/MM/YYYY')) {
-    if (amount > 0) {
-      this.balance -= amount;
-      this.transactions.push([amount, date]);
-    } else {
-      this.errorMessage();
-    }
+    this.#errorMessage(amount);
+    this.balance -= amount;
+    this.transactions.push([amount, date]);
   }
 
-  errorMessage() {
-    this.errorMsg = 'Invalid input, please enter a positive amount';
-    console.log(this.errorMsg);
+  #errorMessage(amount) {
+    if (amount <= 0 || typeof amount !== 'number') {
+      throw new Error(this.#errMsg);
+    }
   }
 }
 
