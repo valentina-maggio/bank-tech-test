@@ -20,6 +20,9 @@
   "dependencies": {
     "jest": "^27.5.1"
   },
+  "jest": {
+    "collectCoverage": true
+  },
   "devDependencies": {
     "eslint": "^8.14.0",
     "eslint-config-airbnb-base": "^15.0.0",
