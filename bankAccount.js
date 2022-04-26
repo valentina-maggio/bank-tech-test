@@ -28,8 +28,8 @@ class BankAccount {
   }
 
   viewStatement() {
-    this.statement.printHeader();
-    this.statement.printTransactions(this.transactions);
+    console.log(this.statement.printHeader());
+    console.log(this.statement.printTransactions(this.transactions));
   }
 
   #errorMessage(amount) {
