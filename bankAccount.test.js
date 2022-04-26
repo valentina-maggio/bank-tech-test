@@ -93,12 +93,12 @@ describe('BankAccount', () => {
 
       account.deposit(5000, fakeDate1.format);
       account.withdraw(200, fakeDate2.format);
-
-      const spy = jest.spyOn(account, 'viewStatement');
-
       account.viewStatement();
 
-      expect(spy).toHaveBeenCalled();
+      const logSpy2 = jest.spyOn(console, 'log');
+
+      expect(logSpy2).toHaveBeenCalledWith('date || credit || debit || balance');
+      expect(logSpy2).toHaveBeenCalledWith('26/04/2022 || || 200.00 || 4800.00\n25/04/2022 || 5000.00 || || 5000.00');
     });
   });
 });
