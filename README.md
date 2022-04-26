@@ -7,10 +7,11 @@ This is a simple application that allows the customer to manage a bank account. 
 ## How to run the program
 
 1. Clone this repo and `cd` in the project directory
-2. Run `node` on your Terminal
-3. Run `const BankAccount = require('./src/bankAccount.js');` to run the file
-4. Create a new instance of the BankAccount class
-5. Run the following commands on the above instance to complete the bank account operations: `.deposit()` to deposit a chosen amount, `.withdraw()` to withdraw a chosen amount, `getBalance()` to check current balance and `viewStatement` to display a complete statement with all the transactions.
+2. Run `npm install` to install the required dependencies (Jest, Eslint, Moment)
+3. Run `node` on your Terminal
+4. Run `const BankAccount = require('./src/bankAccount.js');` to run the file
+5. Create a new instance of the BankAccount class
+6. Run the following commands on the above instance to complete the bank account operations: `.deposit()` to deposit a chosen amount, `.withdraw()` to withdraw a chosen amount, `getBalance()` to check current balance and `viewStatement` to display a complete statement with all the transactions.
 
 ### Interface example
 
