@@ -63,6 +63,29 @@ describe('BankAccount', () => {
     });
   });
 
+  describe('Account overdraft', () => {
+    it('returns a message saying the account is in overdraft', () => {
+      account.deposit(4000);
+      account.withdraw(6000);
+
+      const logSpy = jest.spyOn(console, 'log');
+      console.log('Your balance is negative. You are now using your overdraft allowance');
+
+      expect(logSpy).toHaveBeenCalledWith('Your balance is negative. You are now using your overdraft allowance');
+    });
+  });
+
+  describe('Negative balance', () => {
+    it('throws an error if the balance is negative when trying to withdraw money', () => {
+      account.deposit(4000);
+      account.withdraw(6000);
+
+      expect(() => {
+        account.withdraw(1000);
+      }).toThrow('Your balance is negative, please make a deposit first');
+    });
+  });
+
   describe('Transactions statement', () => {
     it('calls the statement methods to print the transactions statement', () => {
       const fakeDate1 = { format: '25/04/2022' };
