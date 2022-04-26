@@ -20,6 +20,13 @@ describe('Statement', () => {
       ['deposit', '23/04/2022', 200, 350],
       ['withdrawal', '25/04/2022', 50, 300]];
 
-    expect(statement.printTransactions(transactions)).toStrictEqual('25/04/2022 || || 50 || 300\n23/04/2022 || 200 || || 350\n22/04/2022 || 150 || || 150');
+    expect(statement.printTransactions(transactions)).toBe('25/04/2022 || || 50 || 300\n23/04/2022 || 200 || || 350\n22/04/2022 || 150 || || 150');
+  });
+
+  it('returns an empty list in case of no transactions', () => {
+    const statement = new Statement();
+    const transactions = [];
+
+    expect(statement.printTransactions(transactions)).toBe('');
   });
 });
