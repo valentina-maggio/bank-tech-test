@@ -1,4 +1,5 @@
 const moment = require('moment');
+const Statement = require('./statement');
 
 class BankAccount {
   #errMsg;
@@ -6,6 +7,7 @@ class BankAccount {
   constructor() {
     this.balance = 0;
     this.transactions = [];
+    this.statement = new Statement();
     this.#errMsg = 'Invalid input, please enter a positive number';
   }
 
@@ -16,13 +18,18 @@ class BankAccount {
   deposit(amount, date = moment().format('DD/MM/YYYY')) {
     this.#errorMessage(amount);
     this.balance += amount;
-    this.transactions.push([date, amount, this.balance]);
+    this.transactions.push(['deposit', date, amount, this.balance]);
   }
 
   withdraw(amount, date = moment().format('DD/MM/YYYY')) {
     this.#errorMessage(amount);
     this.balance -= amount;
-    this.transactions.push([date, amount, this.balance]);
+    this.transactions.push(['withdrawal', date, amount, this.balance]);
+  }
+
+  viewStatement() {
+    this.statement.printHeader();
+    this.statement.printTransactions(this.transactions);
   }
 
   #errorMessage(amount) {

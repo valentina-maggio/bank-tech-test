@@ -1,30 +1,30 @@
 const BankAccount = require('./bankAccount');
 
 describe('BankAccount', () => {
+  let account;
+
+  beforeEach(() => {
+    account = new BankAccount();
+  });
+
   describe('Bank account opening', () => {
     it('returns an instance of the BankAccount class', () => {
-      const account = new BankAccount();
-
       expect(account).toBeInstanceOf(BankAccount);
     });
 
     it('has an initial balance of 0', () => {
-      const account = new BankAccount();
-
       expect(account.getBalance()).toBe(0);
     });
   });
 
   describe('Bank account movements', () => {
     it('adds money to the bank account', () => {
-      const account = new BankAccount();
       account.deposit(50);
 
       expect(account.getBalance()).toBe(50);
     });
 
     it('withdraws money from the bank account', () => {
-      const account = new BankAccount();
       account.deposit(100);
       account.withdraw(30);
 
@@ -32,38 +32,50 @@ describe('BankAccount', () => {
     });
 
     it('records the transactions with date, amount and current balance', () => {
-      const account = new BankAccount();
       const fakeDate = { format: '25/04/2022' };
 
       account.deposit(50, fakeDate.format);
 
-      expect(account.transactions).toEqual([['25/04/2022', 50, 50]]);
+      expect(account.transactions).toEqual([['deposit', '25/04/2022', 50, 50]]);
     });
 
     it('records the correct current balance', () => {
-      const account = new BankAccount();
       const fakeDate = { format: '25/04/2022' };
 
       account.deposit(50, fakeDate.format);
       account.withdraw(20, fakeDate.format);
 
-      expect(account.transactions).toEqual([['25/04/2022', 50, 50], ['25/04/2022', 20, 30]]);
+      expect(account.transactions).toEqual([['deposit', '25/04/2022', 50, 50], ['withdrawal', '25/04/2022', 20, 30]]);
     });
   });
 
-  describe('Entering invalid inputs', () => {
+  describe('Invalid inputs', () => {
     it('throws an error when customer inputs invalid amount for deposit', () => {
-      const account = new BankAccount();
       expect(() => {
         account.deposit(0);
       }).toThrow('Invalid input, please enter a positive number');
     });
 
     it('throws an error  when customer inputs invalid type of amount for withdrawal', () => {
-      const account = new BankAccount();
       expect(() => {
         account.withdraw('money');
       }).toThrow('Invalid input, please enter a positive number');
+    });
+  });
+
+  describe('Transactions statement', () => {
+    it('calls the statement methods to print the transactions statement', () => {
+      const fakeDate1 = { format: '25/04/2022' };
+      const fakeDate2 = { format: '26/04/2022' };
+
+      account.deposit(5000, fakeDate1.format);
+      account.withdraw(200, fakeDate2.format);
+
+      const spy = jest.spyOn(account, 'viewStatement');
+
+      account.viewStatement();
+
+      expect(spy).toHaveBeenCalled();
     });
   });
 });
