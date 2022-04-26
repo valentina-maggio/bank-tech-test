@@ -38,7 +38,7 @@ date || credit || debit || balance
 
 ### Test coverage
 
-![screenshot]()
+![screenshot](https://github.com/valentina-maggio/bank-tech-test/blob/main/public/test-coverage.png)
 
 ## Design approach
 
@@ -99,9 +99,10 @@ I haven't complete the feature test as I had issues with the mocking of the cons
 
 ### Future improvements
 
-* I will definitely have to improve the use of mocks and spies and therefore update the tests,
-* There may be some room to extract some logic from the BankAccount class and create another class,
+* I will definitely have to improve the use of mocks and spies and therefore update the tests.
+* There may be some room to extract some logic from the BankAccount class and create another class.
 * There are more edge cases that I could consider, eg. withdraw when balance = 0 or add a limit to allowed overdraft.
+* I was planning to integrate Travis CI for the building of the software but I had some issues with the credits and couldn't use it. I will look for an alternative option and add it to the project.
 
 ## Technologies used
 
