@@ -30,23 +30,6 @@ describe('BankAccount', () => {
 
       expect(account.getBalance()).toBe(70);
     });
-
-  //   it('records the transactions with date, amount and current balance', () => {
-  //     const fakeDate = { format: '25/04/2022' };
-
-  //     account.deposit(50, fakeDate.format);
-
-  //     expect(account.transactions).toEqual([['deposit', '25/04/2022', 50, 50]]);
-  //   });
-
-  //   it('records the correct current balance', () => {
-  //     const fakeDate = { format: '25/04/2022' };
-
-  //     account.deposit(50, fakeDate.format);
-  //     account.withdraw(20, fakeDate.format);
-
-  //     expect(account.transactions).toEqual([['deposit', '25/04/2022', 50, 50], ['withdrawal', '25/04/2022', 20, 30]]);
-  //   });
   });
 
   describe('Invalid inputs', () => {
