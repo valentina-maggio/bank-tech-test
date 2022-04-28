@@ -49,12 +49,10 @@ describe('BankAccount', () => {
   describe('Account overdraft', () => {
     it('returns a message saying the account is in overdraft', () => {
       account.deposit(4000);
+      console.log = jest.fn();
       account.withdraw(6000);
 
-      const logSpy = jest.spyOn(console, 'log');
-      console.log('Your balance is negative. You are now using your overdraft allowance');
-
-      expect(logSpy).toHaveBeenCalledWith('Your balance is negative. You are now using your overdraft allowance');
+      expect(console.log).toHaveBeenCalledWith('Your balance is negative. You are now using your overdraft allowance');
     });
   });
 
@@ -69,19 +67,19 @@ describe('BankAccount', () => {
     });
   });
 
-  // describe('Transactions statement', () => {
-  //   it('calls the statement methods to print the transactions statement', () => {
-  //     const fakeDate1 = { format: '25/04/2022' };
-  //     const fakeDate2 = { format: '26/04/2022' };
+  describe('Transactions statement', () => {
+    it('calls the statement methods to print the transactions statement', () => {
+      Date.now = jest.fn(() => new Date('2022-04-27T12:33:37.000Z'));
 
-  //     account.deposit(5000, fakeDate1.format);
-  //     account.withdraw(200, fakeDate2.format);
-  //     account.viewStatement();
+      console.log = jest.fn();
 
-  //     const logSpy2 = jest.spyOn(console, 'log');
+      account.deposit(5000);
+      account.withdraw(200);
+      account.viewStatement();
 
-  //     expect(logSpy2).toHaveBeenCalledWith('date || credit || debit || balance');
-  //     expect(logSpy2).toHaveBeenCalledWith('26/04/2022 || || 200.00 || 4800.00\n25/04/2022 || 5000.00 || || 5000.00');
-  //   });
-  // });
+      expect(console.log).toHaveBeenCalledWith('date || credit || debit || balance\n'
+      + '27/04/2022 || || 200.00 || 4800.00\n'
+      + '27/04/2022 || 5000.00 || || 5000.00');
+    });
+  });
 });

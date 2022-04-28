@@ -36,8 +36,7 @@ class BankAccount {
   }
 
   viewStatement() {
-    console.log(this.#statement.printHeader());
-    console.log(this.#statement.printTransactions(this.transactions));
+    console.log(this.#statement.printDocument(this.transactions));
   }
 
   #errorMessage(amount) {
