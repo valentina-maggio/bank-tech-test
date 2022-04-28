@@ -1,14 +1,17 @@
-const moment = require('moment');
 const Statement = require('./statement');
+const Transaction = require('./transaction');
 
 class BankAccount {
   #statement;
 
   #errMsg;
 
-  constructor(statement = new Statement()) {
+  #transaction;
+
+  constructor(transaction = Transaction, statement = new Statement()) {
     this.balance = 0;
     this.transactions = [];
+    this.#transaction = transaction;
     this.#statement = statement;
     this.#errMsg = 'Invalid input, please enter a positive number';
   }
@@ -17,17 +20,19 @@ class BankAccount {
     return this.balance;
   }
 
-  deposit(amount, date = moment().format('DD/MM/YYYY')) {
+  deposit(amount) {
     this.#errorMessage(amount);
     this.balance += amount;
-    this.transactions.push(['deposit', date, amount, this.balance]);
+    this.transactions.push(new this.#transaction('deposit', amount, this.balance));
+    return this.balance;
   }
 
-  withdraw(amount, date = moment().format('DD/MM/YYYY')) {
+  withdraw(amount) {
     this.#errorMessage(amount);
     this.#checkOverdraft(amount);
     this.balance -= amount;
-    this.transactions.push(['withdrawal', date, amount, this.balance]);
+    this.transactions.push(new this.#transaction('withdrawal', amount, this.balance));
+    return this.balance;
   }
 
   viewStatement() {

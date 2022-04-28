@@ -31,22 +31,22 @@ describe('BankAccount', () => {
       expect(account.getBalance()).toBe(70);
     });
 
-    it('records the transactions with date, amount and current balance', () => {
-      const fakeDate = { format: '25/04/2022' };
+  //   it('records the transactions with date, amount and current balance', () => {
+  //     const fakeDate = { format: '25/04/2022' };
 
-      account.deposit(50, fakeDate.format);
+  //     account.deposit(50, fakeDate.format);
 
-      expect(account.transactions).toEqual([['deposit', '25/04/2022', 50, 50]]);
-    });
+  //     expect(account.transactions).toEqual([['deposit', '25/04/2022', 50, 50]]);
+  //   });
 
-    it('records the correct current balance', () => {
-      const fakeDate = { format: '25/04/2022' };
+  //   it('records the correct current balance', () => {
+  //     const fakeDate = { format: '25/04/2022' };
 
-      account.deposit(50, fakeDate.format);
-      account.withdraw(20, fakeDate.format);
+  //     account.deposit(50, fakeDate.format);
+  //     account.withdraw(20, fakeDate.format);
 
-      expect(account.transactions).toEqual([['deposit', '25/04/2022', 50, 50], ['withdrawal', '25/04/2022', 20, 30]]);
-    });
+  //     expect(account.transactions).toEqual([['deposit', '25/04/2022', 50, 50], ['withdrawal', '25/04/2022', 20, 30]]);
+  //   });
   });
 
   describe('Invalid inputs', () => {
@@ -86,19 +86,19 @@ describe('BankAccount', () => {
     });
   });
 
-  describe('Transactions statement', () => {
-    it('calls the statement methods to print the transactions statement', () => {
-      const fakeDate1 = { format: '25/04/2022' };
-      const fakeDate2 = { format: '26/04/2022' };
+  // describe('Transactions statement', () => {
+  //   it('calls the statement methods to print the transactions statement', () => {
+  //     const fakeDate1 = { format: '25/04/2022' };
+  //     const fakeDate2 = { format: '26/04/2022' };
 
-      account.deposit(5000, fakeDate1.format);
-      account.withdraw(200, fakeDate2.format);
-      account.viewStatement();
+  //     account.deposit(5000, fakeDate1.format);
+  //     account.withdraw(200, fakeDate2.format);
+  //     account.viewStatement();
 
-      const logSpy2 = jest.spyOn(console, 'log');
+  //     const logSpy2 = jest.spyOn(console, 'log');
 
-      expect(logSpy2).toHaveBeenCalledWith('date || credit || debit || balance');
-      expect(logSpy2).toHaveBeenCalledWith('26/04/2022 || || 200.00 || 4800.00\n25/04/2022 || 5000.00 || || 5000.00');
-    });
-  });
+  //     expect(logSpy2).toHaveBeenCalledWith('date || credit || debit || balance');
+  //     expect(logSpy2).toHaveBeenCalledWith('26/04/2022 || || 200.00 || 4800.00\n25/04/2022 || 5000.00 || || 5000.00');
+  //   });
+  // });
 });
