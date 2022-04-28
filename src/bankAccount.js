@@ -6,10 +6,10 @@ class BankAccount {
 
   #errMsg;
 
-  constructor() {
+  constructor(statement = new Statement()) {
     this.balance = 0;
     this.transactions = [];
-    this.#statement = new Statement();
+    this.#statement = statement;
     this.#errMsg = 'Invalid input, please enter a positive number';
   }
 
