@@ -1,7 +1,7 @@
 const moment = require('moment');
 
 class Transaction {
-  constructor(type, amount, balance, date = moment().format('YYYY/MM/DD')) {
+  constructor(type, amount, balance, date = moment().format('DD/MM/YYYY')) {
     this.type = type;
     this.amount = amount;
     this.balance = balance;
