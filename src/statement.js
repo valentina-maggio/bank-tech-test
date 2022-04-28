@@ -15,11 +15,17 @@ class Statement {
     return this.statement.reverse().join('\n');
   }
 
+  printDocument(transactions) {
+    const document = `${this.printHeader()}\n`
+    + `${this.printTransactions(transactions)}`;
+    return document;
+  }
+
   #transactionFormatting(transaction) {
-    if (transaction[0] === 'deposit') {
-      this.statement.push([`${transaction[1]} || ${transaction[2].toFixed(2)} || || ${transaction[3].toFixed(2)}`]);
-    } if (transaction[0] === 'withdrawal') {
-      this.statement.push([`${transaction[1]} || || ${transaction[2].toFixed(2)} || ${transaction[3].toFixed(2)}`]);
+    if (transaction.type === 'deposit') {
+      this.statement.push([`${transaction.date} || ${transaction.amount.toFixed(2)} || || ${transaction.balance.toFixed(2)}`]);
+    } if (transaction.type === 'withdrawal') {
+      this.statement.push([`${transaction.date} || || ${transaction.amount.toFixed(2)} || ${transaction.balance.toFixed(2)}`]);
     }
   }
 }
